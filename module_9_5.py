@@ -18,10 +18,13 @@ class Iterator():
         return self
     # __next__ - метод, увеличивающий атрибут pointer на step
     def __next__(self):
-        self.pointer += self.step
+
         if (self.step > 0 and self.pointer > self.stop) or (self.step < 0 and self.pointer < self.stop):
             raise StopIteration
-        return self.pointer
+        current = self.pointer
+        self.pointer += self.step
+        return current
+
 try:
     iter1 = Iterator(100, 200, 0)
     for i in iter1:
